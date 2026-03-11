@@ -4,7 +4,7 @@ const { db } = require('../db');
 const { auth, role } = require('../middleware');
 
 // ─── GROUPS ───────────────────────────────────────────────────
-router.get('/groups', auth, (req, res) => {
+router.get('/groups', (req, res) => {
   const groups = db.prepare(`
     SELECT g.*, u.name as teacher_name,
     (SELECT COUNT(*) FROM users WHERE group_id = g.id) as member_count
